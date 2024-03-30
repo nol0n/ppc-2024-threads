@@ -151,7 +151,6 @@ bool SSobelStl::run() {
     internal_order_test();
 
     result = SSobelStl::SobelOperatorStl(grayscale_img, imgWidth, imgHeight);
-    std::this_thread::sleep_for(std::chrono::milliseconds(20));
   } catch (...) {
     return false;
   }

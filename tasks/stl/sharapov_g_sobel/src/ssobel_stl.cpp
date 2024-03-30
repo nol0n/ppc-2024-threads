@@ -58,7 +58,7 @@ std::vector<SSobelStl::GrayScale> SSobelStl::SobelOperatorStl(const std::vector<
   int sizeImg = width * height;
   std::vector<GrayScale> resultImg(sizeImg);
 
-  unsigned int numCores = 4;
+  auto numCores = std::thread::hardware_concurrency();
   std::vector<std::thread> threads(numCores);
   auto blockSize = sizeImg / numCores;
 

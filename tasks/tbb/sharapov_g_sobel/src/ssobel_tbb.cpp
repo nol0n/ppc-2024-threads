@@ -45,10 +45,6 @@ std::vector<SSobelTbb::GrayScale> SSobelTbb::convertToGrayScale(const std::vecto
 
   int imgSize = height * width;
 
-  oneapi::tbb::global_control c(
-      oneapi::tbb::global_control::max_allowed_parallelism, 4
-  );
-
   tbb::parallel_for(tbb::blocked_range<int>(0, imgSize), [&](const tbb::blocked_range<int>& r) {
     for (int index = r.begin(); index != r.end(); ++index) {
       const auto& pixel = colorImage[index];
@@ -67,10 +63,6 @@ std::vector<SSobelTbb::GrayScale> SSobelTbb::SobelOperatorTbb(const std::vector<
   int imgSize = height * width;
 
   std::vector<GrayScale> resultImg(width * height);
-
-  oneapi::tbb::global_control c(
-      oneapi::tbb::global_control::max_allowed_parallelism, 4
-  );
 
   tbb::parallel_for(tbb::blocked_range<int>(0, imgSize), [&](const tbb::blocked_range<int>& r) {
     for (int index = r.begin(); index != r.end(); ++index) {
